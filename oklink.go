@@ -1,4 +1,4 @@
-package main
+package oklink
 
 import (
 	"encoding/json"
@@ -65,7 +65,12 @@ type ApiResponse[T any] struct {
 }
 
 func main()  {
-	fmt.Println("Hello World");
+	info, err := AddressInfo("klaytn", "0x1234567890abcdef")
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Printf("Address Information: %+v\n", info)
 }
 
 func fetchApi[T any](url string) (*ApiResponse[T], error) {
